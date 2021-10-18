@@ -1,0 +1,18 @@
+.menu-container {
+  width: 300px;
+  height: 100vh;
+  div {
+    span {
+      font-weight: 500;
+    }
+    .active {
+      border-right: 3px solid #825FF5;
+      i {
+        color: #825FF5;
+      }
+      span {
+        color: black;
+      }
+    }
+  }
+}

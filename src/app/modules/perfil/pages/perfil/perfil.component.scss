@@ -1,0 +1,14 @@
+.perfil {
+  margin-left: 300px;
+}
+
+@media (max-width: 992px) {
+  .perfil {
+    padding: 30px;
+    margin: 0;
+
+    div {
+      width: 100%;
+    }
+  }
+}

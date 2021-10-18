@@ -1,0 +1,25 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+$primary-color: #825FF5;
+$secondary-color: #3E2E75;
+$bg-color: #E3E3E4;
+$gray: #A2A2A2;
+$light-gray: #E0E0E0;
+$dark-gray: #616161;
+
+$theme-colors: (
+  "primary-color": $primary-color,
+  "secondary-color": $secondary-color,
+  "bg-color": $bg-color,
+  "gray": $gray,
+  "light-gray": $light-gray,
+  "dark-gray": $dark-gray
+);
+
+$component-active-bg: white;
+$input-btn-focus-color-opacity: .70;
+$input-btn-focus-color: rgba($primary-color, $input-btn-focus-color-opacity);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";

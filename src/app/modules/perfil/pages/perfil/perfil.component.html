@@ -1,0 +1,39 @@
+<div class="perfil pt-5">
+  <div  class="bg-white container rounded">
+    <div class="text-center">
+      <img src="../../../../../assets/persona/persona.png" width="100px" class="rounded-circle mt-5"><br>
+      <button type="button" [disabled]="!isEditing" class="border-0 bg-white text-primary-color font-weight-bold mt-1">Editar foto</button>
+    </div>
+    <div class="d-flex justify-content-center flex-wrap mt-5">
+
+        <div class="mr-3">
+          <label for="name" class="form-label">Nome</label>
+          <input type="text" class="form-control mb-3" id="name" [disabled]="!isEditing" value="Maria">
+
+          <label for="lastname" class="form-label">Sobrenome</label>
+          <input type="text" class="form-control mb-3" id="lastname" [disabled]="!isEditing" value="Santos">
+
+          <label for="email" class="form-label">Email</label>
+          <input type="text" class="form-control mb-3" id="email" [disabled]="!isEditing" value="maria@email.com">
+        </div>
+
+        <div>
+          <label for="birthday" class="form-label">Data Nascimento</label>
+          <input type="date" class="form-control mb-3" id="birthday" [disabled]="!isEditing" value="1998-11-07">
+
+          <label for="password" class="form-label">Senha</label>
+          <input type="password" class="form-control mb-3" id="password" [disabled]="!isEditing" value="123456">
+        </div>
+
+    </div>
+
+    <div class="text-center">
+      <button type="button" [hidden]="isEditing"  class="btn-primary-color text-white border-0 rounded py-2 px-3 my-5" (click)="editing()">Editar</button>
+      <div [hidden]="!isEditing">
+        <button type="button" class="btn-primary-color text-white border-0 rounded py-2 px-3 mr-3 my-5" (click)="editing()">Salvar</button>
+        <button type="button" class="btn-gray text-white border-0 rounded py-2 px-3 my-5">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+</div>

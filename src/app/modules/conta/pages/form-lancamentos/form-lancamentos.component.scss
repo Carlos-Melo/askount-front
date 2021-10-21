@@ -1,0 +1,21 @@
+input[type=file]{
+  display: none;
+}
+
+label[for=arquivoE] {
+  background-color: rgba(130, 95, 245, .5);
+  font-size: 12px;
+  border-radius: 3px;
+  padding: 10px;
+  cursor: pointer;
+  i {
+    color: white;
+    font-size: 50px;
+    float: right;
+    margin-bottom: -20px;
+  }
+}
+
+button {
+  cursor: pointer;
+}

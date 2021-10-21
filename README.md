@@ -31,6 +31,6 @@ Tecnologias utilizadas para a construção do projeto:
 - TypesScript
 - Angular 12
 - Java
-- Bootstrap 5
+- Bootstrap 4
 - HTML5
 - CSS3

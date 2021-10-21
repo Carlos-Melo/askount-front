@@ -1,5 +1,14 @@
 .adm {
   margin-left: 300px;
+
+  .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    i {
+      font-size: 50px;
+    }
+  }
 }
 
 @media (max-width: 992px) {

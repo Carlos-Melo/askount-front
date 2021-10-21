@@ -1,6 +1,32 @@
-<div class="adm d-flex">
-  <div class="card">
-    <h5>Serviços</h5>
-
+<div class="adm pt-4">
+  <div class="container rounded w-75 p-5 bg-white d-flex flex-wrap justify-content-between">
+    <div class="card w-25 text-center py-3 align-middle mr-3 mt-4" [routerLink]="['servico']">
+      <h5>Serviços</h5>
+      <hr>
+      <div class="card-body">
+        <i class="fas fa-wrench text-primary-color"></i>
+      </div>
+    </div>
+    <div class="card w-25 text-center py-3 align-middle mr-3 mt-4" [routerLink]="['fornecedor']">
+      <h5>Fornecedores</h5>
+      <hr>
+      <div class="card-body">
+        <i class="fas fa-user-cog text-primary-color"></i>
+      </div>
+    </div>
+    <div class="card w-25 text-center py-3 align-middle mr-3 mt-4" [routerLink]="['setor']">
+      <h5>Setores</h5>
+      <hr>
+      <div class="card-body">
+        <i class="fas fa-briefcase text-primary-color"></i>
+      </div>
+    </div>
+    <div class="card w-25 text-center py-3 align-middle mt-4" [routerLink]="['cliente']">
+      <h5>Clientes</h5>
+      <hr>
+      <div class="card-body">
+        <i class="fas fa-user-tag text-primary-color"></i>
+      </div>
+    </div>
   </div>
 </div>

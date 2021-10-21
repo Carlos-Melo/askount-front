@@ -3,11 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { AdmRoutingModule } from './adm-routing.module';
 import { AdmComponent } from './pages/adm/adm.component';
+import { AreaComponent } from './pages/area/area.component';
+import { FormAreaComponent } from './pages/form-area/form-area.component';
 
 
 @NgModule({
   declarations: [
-    AdmComponent
+    AdmComponent,
+    AreaComponent,
+    FormAreaComponent
   ],
   imports: [
     CommonModule,

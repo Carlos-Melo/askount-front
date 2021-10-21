@@ -2,7 +2,7 @@
   <div class="container bg-white rounded p-3">
     <div class="d-flex justify-content-between">
       <div class="col-4">
-        <button type="button" class="btn-primary-color py-2 px-4 border-0 rounded">Nova Conta</button>
+        <button type="button" class="btn-primary-color py-2 px-4 border-0 rounded" (click)="openModal('Criar')">Nova Conta</button>
       </div>
       <div class="input-group col-6">
         <input type="text" class="form-control">
@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="container bg-white rounded p-3 mt-3">
+  <div class="container tabela-content bg-white rounded p-3 mt-3">
     <table class="table">
       <thead>
         <tr>
@@ -20,15 +20,17 @@
           <th scope="col">Tipo</th>
           <th scope="col">Excluir</th>
           <th scope="col">Editar</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr routerLink="lancamentos">
+        <tr>
           <td>Conta Principal</td>
           <td>Itaú</td>
           <td>Conta Corrente</td>
           <td><i class="far fa-trash-alt"></i></td>
-          <td><i class="far fa-edit"></i></td>
+          <td><i class="far fa-edit" (click)="openModal('Editar')"></i></td>
+          <td><button class="btn-primary-color border-0 rounded py-1 px-2" routerLink="lancamentos">Lançamentos</button></td>
         </tr>
       </tbody>
     </table>

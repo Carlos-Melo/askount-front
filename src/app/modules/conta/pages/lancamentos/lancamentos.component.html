@@ -19,7 +19,7 @@
 
     <div class="row justify-content-center">
       <div class="text-center mr-lg-3 mt-3 col-12 col-lg-3 p-0 rounded">
-        <button class="btn-primary-color border-0 rounded text-white py-2 w-100">Adicionar pagamento</button>
+        <button class="btn-primary-color border-0 rounded text-white py-2 w-100" (click)="openModal('Adicionar')">Adicionar pagamento</button>
         <div class="bg-white text-left rounded">
           <h5 class="p-2 pl-3 border-bottom m-0 mt-3 rounded-top activated"><i class="fas fa-level-up-alt"></i> Pagamento</h5>
           <h5 class="p-2 pl-3 border-bottom"><i class="fas fa-level-down-alt"></i> Recebimento</h5>
@@ -44,7 +44,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr routerLink="lancamentos">
+            <tr (click)="openModal('Visualizar')">
               <td><input type="checkbox" name="lancamento" id="lancamento"></td>
               <td>Material escritório</td>
               <td>31/08/2021</td>

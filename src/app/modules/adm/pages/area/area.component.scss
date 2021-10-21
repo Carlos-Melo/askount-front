@@ -1,9 +1,6 @@
-.conta {
-    margin-left: 300px;
-    button {
-      cursor: pointer;
-    }
-  }
+.area {
+  margin-left: 300px;
+}
 
 .tabela-content {
   overflow-x: scroll;
@@ -22,13 +19,13 @@
   }
 }
 
-  @media (max-width: 992px) {
-    .conta {
-      padding: 30px;
-      margin: 0;
+@media (max-width: 992px) {
+  .area {
+    padding: 30px;
+    margin: 0;
 
-      div {
-        width: 100%;
-      }
+    div {
+      width: 100%;
     }
   }
+}

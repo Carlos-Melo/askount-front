@@ -1,5 +1,9 @@
 .lancamento {
   margin-left: 300px;
+
+  h5 {
+    cursor: pointer;
+  }
 }
 
 .tabela-content {
@@ -19,7 +23,7 @@
   }
 }
 
-.activated {
+.active {
   background-color: rgba(130, 95, 245, .5);
 }
 

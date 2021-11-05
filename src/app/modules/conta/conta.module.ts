@@ -6,6 +6,7 @@ import { ContaComponent } from './pages/conta/conta.component';
 import { LancamentosComponent } from './pages/lancamentos/lancamentos.component';
 import { FormContaComponent } from './pages/form-conta/form-conta.component';
 import { FormLancamentosComponent } from './pages/form-lancamentos/form-lancamentos.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormLancamentosComponent } from './pages/form-lancamentos/form-lancamen
   imports: [
     CommonModule,
     ContaRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class ContaModule { }

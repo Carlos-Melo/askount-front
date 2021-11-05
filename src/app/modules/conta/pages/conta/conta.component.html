@@ -24,13 +24,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Conta Principal</td>
-          <td>Itaú</td>
-          <td>Conta Corrente</td>
+        <tr *ngFor="let conta of contas">
+          <td>{{ conta.descricao }}</td>
+          <td>{{ conta.banco }}</td>
+          <td>{{ conta.tipoBanco }}</td>
           <td><i class="far fa-trash-alt"></i></td>
           <td><i class="far fa-edit" (click)="openModal('Editar')"></i></td>
-          <td><button class="btn-primary-color border-0 rounded py-1 px-2" routerLink="lancamentos">Lançamentos</button></td>
+          <td><button class="btn-primary-color border-0 rounded py-1 px-2" [routerLink]="[conta.id, 'lancamentos']">Lançamentos</button></td>
         </tr>
       </tbody>
     </table>

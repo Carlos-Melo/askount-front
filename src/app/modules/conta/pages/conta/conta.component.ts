@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Conta } from '../../shared/conta';
+import { ContaService } from '../../shared/conta.service';
 import { FormContaComponent } from '../form-conta/form-conta.component';
 
 @Component({
@@ -11,9 +13,20 @@ export class ContaComponent implements OnInit {
 
   bsModalRef?: BsModalRef;
 
-  constructor(private modalService: BsModalService) { }
+  contas: any;
+
+  constructor(
+    private modalService: BsModalService,
+    private contaService: ContaService
+    ) { }
 
   ngOnInit(): void {
+    this.contaService.listar(1).subscribe( (data: Conta) => {
+      this.contas = data;
+    },
+    error => {
+      console.log("Erro", error);
+    })
   }
 
   openModal(acao: string) {

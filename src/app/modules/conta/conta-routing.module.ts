@@ -5,7 +5,7 @@ import { LancamentosComponent } from './pages/lancamentos/lancamentos.component'
 
 const routes: Routes = [
   { path: '', component: ContaComponent },
-  { path: 'lancamentos', component: LancamentosComponent }
+  { path: ':id/lancamentos', component: LancamentosComponent }
 ];
 
 @NgModule({

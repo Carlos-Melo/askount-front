@@ -3,11 +3,11 @@
 
     <div class="row justify-content-center">
       <div class="bg-white text-center mr-lg-3 p-3 col-12 col-lg-3 rounded">
-        <img src="../../../../../assets/img/logo_caixa.png" width="90px">
+        <img [src]="srcImagem" width="90px">
       </div>
       <div class="bg-white col-12 col-lg-8 mt-3 mt-lg-0 py-2 py-lg-0 rounded d-flex justify-content-around align-items-center">
         <div style="font-size: 20px;">
-          <i class="fas fa-angle-left mr-5"></i>Novembro<i class="fas fa-angle-right ml-5"></i>
+          <i class="fas fa-angle-left mr-5" (click)="antMes()"></i>{{dataAtual}}<i class="fas fa-angle-right ml-5" (click)="proxMes()"></i>
         </div>
         <div class="h-75 border d-none d-lg-block"></div>
         <div class="d-flex">
@@ -19,12 +19,12 @@
 
     <div class="row justify-content-center">
       <div class="text-center mr-lg-3 mt-3 col-12 col-lg-3 p-0 rounded">
-        <button class="btn-primary-color border-0 rounded text-white py-2 w-100" (click)="openModal('Adicionar')">Adicionar pagamento</button>
+        <button class="btn-primary-color border-0 rounded text-white py-2 w-100" (click)="openModal('Adicionar')">Adicionar {{ pagLanc }}</button>
         <div class="bg-white text-left rounded">
-          <h5 class="p-2 pl-3 border-bottom m-0 mt-3 rounded-top activated"><i class="fas fa-level-up-alt"></i> Pagamento</h5>
-          <h5 class="p-2 pl-3 border-bottom"><i class="fas fa-level-down-alt"></i> Recebimento</h5>
+          <h5 class="p-2 pl-3 border-bottom m-0 mt-3 rounded-top" (click)="pActivated()" [ngClass]="isActive == true ? 'active' : ''"><i class="fas fa-level-up-alt"></i> Pagamento</h5>
+          <h5 class="p-2 pl-3 border-bottom" (click)="rActivated()" [ngClass]="isActive == false ? 'active' : ''"><i class="fas fa-level-down-alt"></i> Recebimento</h5>
           <div class="pl-3 pb-3 mt-5">
-            <p>Número de lançamentos: <span>15</span></p>
+            <p>Número de lançamentos: <span>{{totalLancamento}}</span></p>
             <p>Total de pagamentos: <span>-5.500,00</span></p>
             <p>Total de recebimento: <span>10.000,00</span></p>
             <p>Valor em conta: <span>25.000,00</span></p>
@@ -44,13 +44,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr (click)="openModal('Visualizar')">
+            <tr (click)="openModal('Visualizar')" *ngFor="let lancamento of lancamentos">
               <td><input type="checkbox" name="lancamento" id="lancamento"></td>
-              <td>Material escritório</td>
-              <td>31/08/2021</td>
-              <td>Paperbox</td>
-              <td>Administrativo</td>
-              <td>-50,00</td>
+              <td>{{ lancamento.descricao }}</td>
+              <td>{{ lancamento.dataCompetencia }}</td>
+              <td>{{ lancamento.fornecedor }}</td>
+              <td>{{ lancamento.setor }}</td>
+              <td>{{ lancamento.valor }}</td>
             </tr>
           </tbody>
         </table>

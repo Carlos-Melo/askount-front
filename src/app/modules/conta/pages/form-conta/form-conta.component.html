@@ -1,26 +1,58 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">{{acao }} conta</h4>
+  <h6 class="modal-title pull-left">{{acao }} conta</h6>
   <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="onClose()">
     <span aria-hidden="true" class="visually-hidden">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <form>
-    <label for="desc">Descrição</label>
-    <input type="text" name="desc" class="form-control mb-3">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="desc">Descrição</label>
+      <input type="text" formControlName="descricao" class="form-control mb-3">
+    </div>
 
-    <label for="banco">Banco</label>
-    <input type="text" name="banco" class="form-control mb-3">
+    <div>
+      <label for="banco">Banco</label>
+      <select formControlName="banco" class="form-control" [ngClass]="aplicaCssErro('banco')">
+        <option value="" disabled hidden selected></option>
+        <option value="brasil">Banco do Brasil</option>
+        <option value="nordeste">Banco do Nordeste</option>
+        <option value="safra">Banco Safra</option>
+        <option value="votorantim">Banco Votorantim</option>
+        <option value="banrisul">Banrisul</option>
+        <option value="bradesco">Bradesco</option>
+        <option value="btg">BTG Pactual</option>
+        <option value="baixa">Caixa Econômica Federal</option>
+        <option value="citibank">Citibank Brasil</option>
+        <option value="itau">Itaú Unibanco</option>
+        <option value="santander">Santander</option>
+        <option value="sicoob">Sicoob</option>
+      </select>
+      <div class="invalid-feedback">
+        <p>Preenchimento obrigatório</p>
+      </div>
+    </div>
 
-    <label for="tipoBanco">Tipo de banco</label>
-    <select name="tipoBanco" class="form-control mb-3">
-      <option value="" disabled hidden selected></option>
-      <option value="Pounaça">Pounaça</option>
-      <option value="Conta corrente">Conta corrente</option>
-    </select>
+    <div>
+      <label for="tipoBanco" class="mt-3">Tipo de banco</label>
+      <select formControlName="tipoBanco" class="form-control" [ngClass]="aplicaCssErro('tipoBanco')">
+        <option value="" disabled hidden selected></option>
+        <option value="Conta corrente">Conta corrente</option>
+        <option value="Conta salario">Conta salário</option>
+        <option value="Pounaça">Poupança</option>
+      </select>
+      <div class="invalid-feedback">
+        <p>Preenchimento obrigatório</p>
+      </div>
+    </div>
 
-    <label for="valorInicial">Valor Inicial</label>
-    <input type="text" name="valorInicial" class="form-control mb-3">
+    <div>
+      <label for="valorInicial" class="mt-3">Valor Inicial</label>
+      <input type="number" formControlName="valorInicial" class="form-control" #campoValor (blur)="converteBrl(campoValor.value)" [ngClass]="aplicaCssErro('valorInicial')">
+      <div class="invalid-feedback">
+        <p>Preenchimento obrigatório</p>
+      </div>
+    </div>
 
     <div class="text-center my-4">
       <button type="submit" *ngIf="acao === 'Criar'" class="btn-primary-color border-0 rounded py-1 px-5">Criar</button>

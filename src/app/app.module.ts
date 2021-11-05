@@ -18,7 +18,7 @@ import { MenuComponent } from './modules/menu/menu.component';
     AppRoutingModule,
     HomeModule,
     DashboardModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

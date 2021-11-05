@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class AccessModule { }

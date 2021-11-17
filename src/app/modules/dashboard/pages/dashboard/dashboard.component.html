@@ -10,33 +10,18 @@
 
   <div class="d-flex flex-column mt-5">
 
-    <div class="bg-white p-3 rounded">
+    <div class="bg-white p-3 rounded mb-5" *ngFor="let conta of contas">
       <div class="d-flex">
         <div>
-          <img src="../../../../../assets/img/logo_caixa.png" class="mr-3" width="50px">
+          <img src="../../../../../assets/img/bancos/{{conta.banco}}.png" class="mr-3" width="50px">
         </div>
         <div>
-          <h5>Conta corrente</h5>
-          <p>Conta principal</p>
+          <h5>{{conta.tipoBanco}}</h5>
+          <p>{{conta.descricao}}</p>
         </div>
       </div>
       <div>
-        <h6 class="text-right mt-3">R$ 10.000,00</h6>
-      </div>
-    </div>
-
-    <div class="bg-white mt-5 p-3 rounded">
-      <div class="d-flex mt-3">
-        <div>
-          <img src="../../../../../assets/img/logo_santander.png" class="mr-3" width="50px">
-        </div>
-        <div>
-          <h5>Conta corrente</h5>
-          <p>Conta principal</p>
-        </div>
-      </div>
-      <div>
-        <h6 class="text-right mt-3">R$ 10.000,00</h6>
+        <h6 class="text-right mt-3">R$ {{conta.valorInicial}}</h6>
       </div>
     </div>
 

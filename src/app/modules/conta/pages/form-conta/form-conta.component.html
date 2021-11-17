@@ -22,7 +22,7 @@
         <option value="banrisul">Banrisul</option>
         <option value="bradesco">Bradesco</option>
         <option value="btg">BTG Pactual</option>
-        <option value="baixa">Caixa Econômica Federal</option>
+        <option value="caixa">Caixa Econômica Federal</option>
         <option value="citibank">Citibank Brasil</option>
         <option value="itau">Itaú Unibanco</option>
         <option value="santander">Santander</option>
@@ -37,9 +37,9 @@
       <label for="tipoBanco" class="mt-3">Tipo de banco</label>
       <select formControlName="tipoBanco" class="form-control" [ngClass]="aplicaCssErro('tipoBanco')">
         <option value="" disabled hidden selected></option>
-        <option value="Conta corrente">Conta corrente</option>
-        <option value="Conta salario">Conta salário</option>
-        <option value="Pounaça">Poupança</option>
+        <option value="Conta orrente">Conta corrente</option>
+        <option value="Conta Salario">Conta salário</option>
+        <option value="Poupança">Poupança</option>
       </select>
       <div class="invalid-feedback">
         <p>Preenchimento obrigatório</p>
@@ -48,7 +48,7 @@
 
     <div>
       <label for="valorInicial" class="mt-3">Valor Inicial</label>
-      <input type="number" formControlName="valorInicial" class="form-control" #campoValor (blur)="converteBrl(campoValor.value)" [ngClass]="aplicaCssErro('valorInicial')">
+      <input type="text" formControlName="valorInicial" class="form-control" [value]="valorForm" #campoValor oninput="this.value = this.value.replace(/[^0-9,]/g, '').replace(/(\..*)\./g, '$1');" (blur)="converteBrl(campoValor.value)" [ngClass]="aplicaCssErro('valorInicial')">
       <div class="invalid-feedback">
         <p>Preenchimento obrigatório</p>
       </div>

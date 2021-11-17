@@ -4,6 +4,14 @@
   h5 {
     cursor: pointer;
   }
+
+  .hoverLancamento {
+    transition: .3s;
+    cursor: pointer;
+    &:hover{
+      background-color: rgba(130, 95, 245, .5);
+    }
+  }
 }
 
 .tabela-content {

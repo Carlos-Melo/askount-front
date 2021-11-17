@@ -11,10 +11,12 @@ import { ContaService } from '../../shared/conta.service';
 })
 export class FormContaComponent implements OnInit {
 
-  @Input() acao: string = '';
+  @Input() acao: String = '';
 
   formulario: FormGroup;
   conta: Conta;
+  contaId: number;
+  valorForm: String;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -23,21 +25,26 @@ export class FormContaComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.contaService.emitirEditar.subscribe((id: number) => {
+      this.getConta(id);
+    })
+
     this.inicializaForm();
   }
 
   inicializaForm() {
-    this.formulario = this.formBuilder.group({
-      descricao: [''],
-      banco: ['', Validators.required],
-      tipoBanco: ['', Validators.required],
-      valorInicial: ['', Validators.required]
-    })
+      this.formulario = this.formBuilder.group({
+        descricao: [''],
+        banco: ['', Validators.required],
+        tipoBanco: ['', Validators.required],
+        valorInicial: ['', Validators.required]
+      })
   }
 
+  /*** Verifica se o formulário é válido e manda setar os dados ***/
   onSubmit() {
     if(this.formulario.valid) {
-      this.setarDados();
+        this.setarDados();
     }else {
       Object.keys(this.formulario.controls).forEach(campo => {
         const controle = this.formulario.get(campo);
@@ -46,6 +53,7 @@ export class FormContaComponent implements OnInit {
     }
   }
 
+  /*** Envia dados para cadastro ***/
   enviaCadastro() {
     this.contaService.cadastrar(this.conta).subscribe( (data: Conta) => {
       alert("Cadastrado com sucesso");
@@ -56,16 +64,68 @@ export class FormContaComponent implements OnInit {
     })
   }
 
+  /*** Captura conta para editar ***/
+  getConta(id) {
+    this.contaId = id
+    if(id != undefined){
+    this.contaService.getOne(id).subscribe( (data: Conta) => {
+      this.setarEditDados(data);
+    },
+    error => {
+      console.log("Erro", error);
+    })
+    }
+  }
+
+  /*** Envia dados para edição ***/
+  enviaDadosEditados() {
+    this.contaService.editar(this.conta.id, this.conta).subscribe((data) =>{
+      alert('Dados alterados comsucesso');
+      this.onClose();
+    }),
+    error => {
+      console.log('Error', error);
+    }
+  }
+
+  /*** Seta os dados do back para formulario ***/
+  setarEditDados(conta: Conta) {
+    this.conta = conta
+    this.formulario.controls.descricao.setValue(this.conta.descricao)
+    this.formulario.controls.banco.setValue(this.conta.banco)
+    this.formulario.controls.tipoBanco.setValue(this.conta.tipoBanco)
+    this.formulario.controls.valorInicial.setValue(this.conta.valorInicial)
+
+  }
+
+  /*** Seta os dados do formulário para Conta ***/
   setarDados() {
-    this.conta = {
-      descricao: this.formulario.controls.descricao.value,
-      banco: this.formulario.controls.banco.value,
-      tipoBanco: this.formulario.controls.tipoBanco.value,
-      valorInicial: this.formulario.controls.valorInicial.value,
-      idUsuario: 1
+    if(this.contaId != undefined){
+      console.log("Editar")
+      this.conta = {
+        id: this.conta.id,
+        descricao: this.formulario.controls.descricao.value,
+        banco: this.formulario.controls.banco.value,
+        tipoBanco: this.formulario.controls.tipoBanco.value,
+        valorInicial: this.formulario.controls.valorInicial.value,
+        idUsuario: 1
+      }
+
+      this.enviaDadosEditados();
+
+    }else {
+      console.log("Undefined")
+      this.conta = {
+        descricao: this.formulario.controls.descricao.value,
+        banco: this.formulario.controls.banco.value,
+        tipoBanco: this.formulario.controls.tipoBanco.value,
+        valorInicial: this.formulario.controls.valorInicial.value,
+        idUsuario: 1
+      }
+
+      this.enviaCadastro();
     }
 
-    this.enviaCadastro();
   }
 
   onClose(){
@@ -74,8 +134,11 @@ export class FormContaComponent implements OnInit {
 
   /**** Formata para moeda brasileira*/
   converteBrl(value) {
-    let real = value.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
-    console.log(real)
+    if(value.search(',') < 0 && value != ''){
+      this.valorForm = parseFloat(value).toLocaleString('pt-BR', {minimumFractionDigits: 2});
+    }else {
+      this.valorForm = value;
+    }
   }
 
   /*** Verifica e retorna campo touched inválido ***/

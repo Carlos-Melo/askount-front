@@ -28,8 +28,8 @@
           <td>{{ conta.descricao }}</td>
           <td>{{ conta.banco }}</td>
           <td>{{ conta.tipoBanco }}</td>
-          <td><i class="far fa-trash-alt"></i></td>
-          <td><i class="far fa-edit" (click)="openModal('Editar')"></i></td>
+          <td><i class="far fa-trash-alt" (click)="excluirConta(conta.id)"></i></td>
+          <td><i class="far fa-edit" (click)="openModal('Editar', conta.id)"></i></td>
           <td><button class="btn-primary-color border-0 rounded py-1 px-2" [routerLink]="[conta.id, 'lancamentos']">Lançamentos</button></td>
         </tr>
       </tbody>

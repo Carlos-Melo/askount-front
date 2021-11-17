@@ -44,7 +44,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr (click)="openModal('Visualizar')" *ngFor="let lancamento of lancamentos">
+            <tr (click)="openModal('Visualizar', lancamento.id)" class="hoverLancamento" *ngFor="let lancamento of lancamentos">
               <td><input type="checkbox" name="lancamento" id="lancamento"></td>
               <td>{{ lancamento.descricao }}</td>
               <td>{{ lancamento.dataCompetencia }}</td>

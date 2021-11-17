@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Conta } from 'src/app/modules/conta/shared/conta';
+import { ContaService } from 'src/app/modules/conta/shared/conta.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  contas: any;
+  srcImagem: String;
+
+  constructor(private contaService: ContaService) { }
 
   ngOnInit(): void {
+    this.getContas();
   }
 
+  /*** Retorna a lista de todas as contas ***/
+  getContas() {
+    this.contaService.listar(1).subscribe( (data: Conta) => {
+      this.contas = data;
+    }, error => {
+      console.log("Erro", error)
+    })
+  }
 }

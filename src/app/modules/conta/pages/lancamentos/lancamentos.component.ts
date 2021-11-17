@@ -44,11 +44,17 @@ export class LancamentosComponent implements OnInit {
   listaLancamentos() {
     this.lancamentoService.listar(this.idConta).subscribe( (data: Lancamento) => {
       this.lancamentos = data;
-      this.totalLancamento = this.lancamentos.length
+      this.somaValoresLancamentos();
     },
     error => {
       console.log("Erro", error);
     })
+  }
+
+  somaValoresLancamentos() {
+    for(let i = 0; i < this.lancamentos.length; i++) {
+      console.log(this.lancamentos[i].valor)
+    }
   }
 
   /**** Pega imagem dos arquivos e retorna para HTML ****/
@@ -59,6 +65,7 @@ export class LancamentosComponent implements OnInit {
   /***** Relaciona id com conta ******/
   identConta(){
     this.idConta = this.activatedRoute.snapshot.params['id'];
+    console.log(this.activatedRoute.snapshot)
 
     this.contaService.getOne(this.idConta).subscribe( (data: Conta) => {
       this.setaImagem(data.banco);
@@ -68,10 +75,11 @@ export class LancamentosComponent implements OnInit {
   }
 
   /******* Chamada para o formulário *********/
-  openModal(acao: string) {
+  openModal(acao: string, id?: number) {
     this.bsModalRef = this.modalService.show(FormLancamentosComponent, {class: 'modal-lg' });
     this.bsModalRef.content.acao = acao;
     this.bsModalRef.content.pagOuRec = this.pagLanc;
+    this.lancamentoService.emitirEditar.emit(id);
   }
 
   /******* Atualiza data para próximo mes e ano *********/

@@ -25,8 +25,8 @@
           <h5 class="p-2 pl-3 border-bottom" (click)="rActivated()" [ngClass]="isActive == false ? 'active' : ''"><i class="fas fa-level-down-alt"></i> Recebimento</h5>
           <div class="pl-3 pb-3 mt-5">
             <p>Número de lançamentos: <span>{{totalLancamento}}</span></p>
-            <p>Total de pagamentos: <span>-5.500,00</span></p>
-            <p>Total de recebimento: <span>10.000,00</span></p>
+            <p>Total de pagamentos: <span>-{{totalPagamento}}</span></p>
+            <p>Total de recebimento: <span>{{totalRecebimento}}</span></p>
             <p>Valor em conta: <span>25.000,00</span></p>
           </div>
         </div>

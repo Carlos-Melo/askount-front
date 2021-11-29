@@ -24,6 +24,8 @@ export class LancamentosComponent implements OnInit {
   pagLanc: String = "Pagamento";
   lancamentos: any;
   totalLancamento: number;
+  totalPagamento: number = 0;
+  totalRecebimento: number = 0;
 
   constructor(
     private modalService: BsModalService,
@@ -42,19 +44,41 @@ export class LancamentosComponent implements OnInit {
 
   /**** Listar Lançamentos ****/
   listaLancamentos() {
+    this.idConta = this.activatedRoute.snapshot.params['id'];
     this.lancamentoService.listar(this.idConta).subscribe( (data: Lancamento) => {
       this.lancamentos = data;
-      this.somaValoresLancamentos();
+      if(this.pagLanc == 'Pagamento') {
+        var recebimentos: any = this.lancamentos.filter((lancamento, index) => lancamento.recebimento == false && this.lancamentos[index].dataCompetencia.slice(0,7) == `${this.data.getFullYear()}-${this.data.getMonth()+1}` );
+        this.somaValoresLancamentos(recebimentos)
+      }else {
+        var recebimentos: any = this.lancamentos.filter((lancamento, index) => lancamento.recebimento == true && this.lancamentos[index].dataCompetencia.slice(0,7) == `${this.data.getFullYear()}-${this.data.getMonth()+1}`);
+        this.somaValoresLancamentos(recebimentos);
+      }
+      this.lancamentos = recebimentos
+      this.totalLancamento = this.lancamentos.length
+
+
     },
     error => {
       console.log("Erro", error);
     })
   }
 
-  somaValoresLancamentos() {
-    for(let i = 0; i < this.lancamentos.length; i++) {
-      console.log(this.lancamentos[i].valor)
+  somaValoresLancamentos(recebimentos) {
+    for(let i = 0; i < recebimentos.length; i++) {
+      if(recebimentos[i].recebimento === true) {
+        var valor = parseFloat(recebimentos[i].valor.replace(',','.'))
+        this.totalRecebimento += valor;
+
+      }
+      if(recebimentos[i].recebimento === false)  {
+        var valor = parseFloat(recebimentos[i].valor.replace(',','.'))
+        this.totalPagamento += valor;
+      }
     }
+
+    this.totalPagamento.toLocaleString('pt-br', {minimumFractionDigits: 2})
+    this.totalRecebimento.toLocaleString('pt-br', {minimumFractionDigits: 2})
   }
 
   /**** Pega imagem dos arquivos e retorna para HTML ****/
@@ -64,8 +88,7 @@ export class LancamentosComponent implements OnInit {
 
   /***** Relaciona id com conta ******/
   identConta(){
-    this.idConta = this.activatedRoute.snapshot.params['id'];
-    console.log(this.activatedRoute.snapshot)
+    //console.log(this.activatedRoute.snapshot)
 
     this.contaService.getOne(this.idConta).subscribe( (data: Conta) => {
       this.setaImagem(data.banco);
@@ -86,24 +109,32 @@ export class LancamentosComponent implements OnInit {
   proxMes() {
     this.data.setMonth(this.data.getMonth() + 1);
     this.dataAtual = `${this.meses[this.data.getMonth()]} / ${this.data.getFullYear()}`;
+    this.listaLancamentos();
+    this.totalPagamento = 0
+    this.totalRecebimento = 0
   }
 
   /******* Atualiza data para anterior mes e ano *********/
   antMes() {
     this.data.setMonth(this.data.getMonth() - 1);
     this.dataAtual = `${this.meses[this.data.getMonth()]} / ${this.data.getFullYear()}`;
+    this.listaLancamentos();
+    this.totalPagamento = 0
+    this.totalRecebimento = 0
   }
 
   /******* Adiciona classe "active" no pagamento *********/
   pActivated() {
     this.isActive = true;
     this.pagLanc = "Pagamento";
+    this.listaLancamentos();
   }
 
   /******* Adiciona classe "active" no recebimento *********/
   rActivated() {
     this.isActive = false;
     this.pagLanc = "Recebimento";
+    this.listaLancamentos();
   }
 
 

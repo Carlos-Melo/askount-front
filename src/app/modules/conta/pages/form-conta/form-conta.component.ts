@@ -16,7 +16,7 @@ export class FormContaComponent implements OnInit {
   formulario: FormGroup;
   conta: Conta;
   contaId: number;
-  valorForm: String;
+  valorForm: String = '';
 
   constructor(
     public bsModalRef: BsModalRef,
